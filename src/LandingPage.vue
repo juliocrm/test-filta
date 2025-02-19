@@ -1,55 +1,92 @@
 <template>
-    <div>
-        <ImageModal :isOpen="isModalOpen" :imageSrc="currentImage" @close="closeModal" />
-        <title></title>
-        <section class="container mx-auto py-12">
-            <div class="md:flex md:items-center md:space-x-8">
-            <div class="md:w-1/2 flex justify-center">
-                <img
-                src="https://i.pinimg.com/736x/dd/0b/0d/dd0b0d507240b89f23ff6c0157ac03d0.jpg"
-                alt="Test image description"
-                class="max-w-full max-h-[80vh] rounded-lg shadow-md cursor-pointer"
-                @click="openModal('https://i.pinimg.com/736x/dd/0b/0d/dd0b0d507240b89f23ff6c0157ac03d0.jpg')"
-                />
-            </div>
-            <div class="md:w-1/2">
-                <p class="text-gray-700">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
-            </div>
-        </section>
+  <div class="pt-16">
+    <ImageModal :isOpen="isModalOpen" :imageSrc="currentImage" @close="closeModal" />
+    <title class="block text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white text-center leading-tight">{{ landingPage.title }}</title>
+    <section class="container mx-auto py-12 mt-10">
+      <div class="md:flex md:items-center md:space-x-8">
+        <div class="md:w-1/2 flex justify-center">
+          <img
+            v-if="landingPage.heroImage"
+            :src="landingPage.heroImage ? landingPage.heroImage.url : ''"
+            :alt="landingPage.heroImage ? landingPage.heroImage.description : ''"
+            class="max-w-full max-h-[60vh] rounded-lg shadow-md cursor-pointer"
+            @click="landingPage.heroImage && openModal(landingPage.heroImage.url)"
+          />
+        </div>
+        <div class="md:w-1/2">
+          <p class="text-gray-700" v-if="landingPage.heroImage">
+            {{ landingPage.heroImage.description }}
+          </p>
+        </div>
+      </div>
+    </section>
 
-        <section class="container mx-auto px-4 py-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div v-for="image in images" :key="image.id" class="flex flex-col items-center">
-                <div class="w-full aspect-[9/16] overflow-hidden">
-                    <img :src="image.url" :alt="image.alt" class="w-full h-full object-cover cursor-pointer" @click="openModal(image.url)" />
-                </div>
-                <p class="mt-2 text-center">{{ image.description }}</p>
-                </div>
-            </div>
-        </section>
-    </div>
+    <section class="container mx-auto py-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div v-for="image in images" :key="image.id" class="flex flex-col items-center">
+          <div class="w-full aspect-[9/16] overflow-hidden">
+            <img
+              :src="image.url"
+              :alt="image.alt"
+              class="w-full h-full object-cover cursor-pointer"
+              @click="openModal(image.url)"
+            />
+          </div>
+          <p class="mt-2 text-center">{{ image.description }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
 import ImageModal from './components/Modal.vue'
+
 export default {
   name: 'LandingPage',
   components: { ImageModal },
   data() {
     return {
-      images: [
-        { id: 1, url: 'https://i.pinimg.com/736x/b4/4e/87/b44e87858cc70b06c0064c4c9c64a2db.jpg', alt: 'Image 1', description: 'Description for image 1' },
-        { id: 2, url: 'https://i.pinimg.com/736x/9a/39/22/9a392291887ea4113e48966b929a1ad3.jpg', alt: 'Image 2', description: 'Description for image 2' },
-        { id: 3, url: 'https://i.pinimg.com/736x/93/9e/a8/939ea8de0c247c04fb5344873ab19301.jpg', alt: 'Image 3', description: 'Description for image 3' }
-      ],
+      landingPage: {},
+      images: [],
+      backgroundColors: {},
       isModalOpen: false,
       currentImage: ''
     }
   },
   methods: {
+    async fetchLandingPage() {
+      try {
+        const response = await fetch('/api/landing-page')
+        if (!response.ok) throw new Error('Failed to fetch landing page data')
+        this.landingPage = await response.json()
+        console.log("Landing data: ", this.landingPage)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async fetchSectionImages() {
+      try {
+        const response = await fetch('/api/section-images')
+        if (!response.ok) throw new Error('Failed to fetch section images data')
+        const data = await response.json()
+        this.images = data.map(image => ({
+          ...image,
+          alt: image.description
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async fetchBackgroundColors() {
+      try {
+        const response = await fetch('/api/background-colors')
+        if (!response.ok) throw new Error('Failed to fetch background colors data')
+        this.backgroundColors = await response.json()
+      } catch (error) {
+        console.error(error)
+      }
+    },
     openModal(url) {
       this.currentImage = url
       this.isModalOpen = true
@@ -58,6 +95,11 @@ export default {
       this.isModalOpen = false
       this.currentImage = ''
     }
+  },
+  created() {
+    this.fetchLandingPage()
+    this.fetchSectionImages()
+    this.fetchBackgroundColors()
   }
 }
 </script>

@@ -1,0 +1,30 @@
+{
+  "landingPage": {
+    "title": "Landing Page Title",
+    "heroImage": {
+      "url": "https://i.pinimg.com/736x/cd/d6/ed/cdd6ed4fbcc7458d08e0cc97e0084d16.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    }
+  },
+  "sectionImages": [
+    {
+      "id": 1,
+      "url": "https://i.pinimg.com/736x/18/91/03/189103b2de953f09f223f210004d6e25.jpg",
+      "description": "Description for image 1"
+    },
+    {
+      "id": 2,
+      "url": "https://i.pinimg.com/736x/9a/39/22/9a392291887ea4113e48966b929a1ad3.jpg",
+      "description": "Description for image 2"
+    },
+    {
+      "id": 3,
+      "url": "https://i.pinimg.com/736x/93/9e/a8/939ea8de0c247c04fb5344873ab19301.jpg",
+      "description": "Description for image 3"
+    }
+  ],
+  "backgroundColors": {
+    "start": "#feb47b",
+    "end": "#ff7e5f"
+  }
+}
