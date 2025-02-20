@@ -3,6 +3,9 @@
 ## Overview
 This project is a frontend application built with Vue 3 and Tailwind CSS as part of a technical test for a frontend developer position. The application features a landing page with a hero image, an image gallery with a modal view, and smooth animations. Most of the data is fetched from a JSON file to simulate a real-world scenario in a CMS application.
 
+## Preview
+https://filta-tech-test-jcrm.netlify.app
+
 ## Technologies
 - Vue 3
 - Tailwind CSS
