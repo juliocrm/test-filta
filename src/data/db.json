@@ -1,6 +1,7 @@
 {
   "landingPage": {
     "title": "Landing Page Title",
+    "titleColor": "#ffffff",
     "heroImage": {
       "url": "https://i.pinimg.com/736x/cd/d6/ed/cdd6ed4fbcc7458d08e0cc97e0084d16.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."

@@ -24,24 +24,10 @@ const backgroundStyle = computed(() => ({
 </script>
 
 <template>
-  <div class="w-full" :style="backgroundStyle">
-    <div class="w-full md:w-[70%] mx-auto">
-      <LandingPage/>
+  <div class="relative min-h-screen">
+    <div class="fixed top-0 left-0 w-full h-full" :style="backgroundStyle"></div>
+    <div class="relative w-full md:w-[70%] mx-auto">
+      <LandingPage />
     </div>
   </div>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

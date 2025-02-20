@@ -1,7 +1,11 @@
 <template>
-  <div class="pt-16">
+  <div class="pt-16 px-8 md:px-0">
     <ImageModal :isOpen="isModalOpen" :imageSrc="currentImage" @close="closeModal" />
-    <title class="block text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white text-center leading-tight">{{ landingPage.title }}</title>
+    <title
+      v-if="landingPage" 
+      class="block text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white text-center leading-tight"
+      :style="{ color: landingPage.titleColor }"
+    >{{ landingPage.title }}</title>
     <section class="container mx-auto py-12 mt-10">
       <div class="md:flex md:items-center md:space-x-8">
         <div class="md:w-1/2 flex justify-center">
@@ -9,33 +13,29 @@
             v-if="landingPage.heroImage"
             :src="landingPage.heroImage ? landingPage.heroImage.url : ''"
             :alt="landingPage.heroImage ? landingPage.heroImage.description : ''"
-            class="max-w-full max-h-[60vh] rounded-lg shadow-md cursor-pointer"
+            class="max-w-full max-h-[50vh] md:max-h-[60vh] rounded-lg shadow-md cursor-pointer"
             @click="landingPage.heroImage && openModal(landingPage.heroImage.url)"
           />
         </div>
         <div class="md:w-1/2">
-          <p class="text-gray-700" v-if="landingPage.heroImage">
+          <p class="text-gray-700 mt-4" v-if="landingPage.heroImage">
             {{ landingPage.heroImage.description }}
           </p>
         </div>
       </div>
     </section>
 
-    <section class="container mx-auto py-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section class="container mx-auto py-14 h-screen">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-full items-center justify-center">
         <div v-for="image in images" :key="image.id" class="flex flex-col items-center">
-          <div class="w-full aspect-[9/16] overflow-hidden">
-            <img
-              :src="image.url"
-              :alt="image.alt"
-              class="w-full h-full object-cover cursor-pointer"
-              @click="openModal(image.url)"
-            />
+          <div class="w-full max-w-[240px] aspect-[9/16] overflow-hidden">
+            <img :src="image.url" :alt="image.alt" class="w-full h-full object-cover cursor-pointer" @click="openModal(image.url)" />
           </div>
           <p class="mt-2 text-center">{{ image.description }}</p>
         </div>
       </div>
     </section>
+
   </div>
 </template>
 
