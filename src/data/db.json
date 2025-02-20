@@ -1,0 +1,31 @@
+{
+  "landingPage": {
+    "title": "Canvas & Soul",
+    "titleColor": "#ffffff",
+    "heroImage": {
+      "url": "https://i.pinimg.com/736x/20/f3/42/20f342ed28a33df6ae072a09fde1bdd0.jpg",
+      "description": "Step into a world where color and texture come to life. Each brushstroke tells a story, and every artwork captures a unique emotion. At Canvas & Soul, we celebrate art in its purest form, showcasing an exclusive collection of oil paintings created by talented artists."
+    }
+  },
+  "sectionImages": [
+    {
+      "id": 1,
+      "url": "https://i.pinimg.com/736x/18/91/03/189103b2de953f09f223f210004d6e25.jpg",
+      "description": "Elephants drink by a golden-lit river, their silhouettes against a sky of warm hues—a moment of pure tranquility."
+    },
+    {
+      "id": 2,
+      "url": "https://i.pinimg.com/736x/9a/39/22/9a392291887ea4113e48966b929a1ad3.jpg",
+      "description": "A winding path through golden fields, vibrant wildflowers, and a sky alive with swirling clouds—nature in motion."
+    },
+    {
+      "id": 3,
+      "url": "https://i.pinimg.com/736x/eb/f6/f7/ebf6f70c2d68a204c0925a88355a2e1c.jpg",
+      "description": "A snowy path leads to a cozy cabin, its warm glow mirrored in the icy river, while golden clouds set the sky ablaze."
+    }
+  ],
+  "backgroundColors": {
+    "start": "#feb47b",
+    "end": "#ff7e5f"
+  }
+}
